@@ -16,6 +16,16 @@
   }
 }
 
+.vroom-btn-rd {
+  font-family: "Righteous";
+  padding: 4px;
+  width: 38px;
+  &:focus {
+    border: none;
+    box-shadow: none;
+  }
+}
+
 // buttons
 .vroom-red {
   background: linear-gradient(90deg, #EE0000 0%, #FFCF00 100%);
