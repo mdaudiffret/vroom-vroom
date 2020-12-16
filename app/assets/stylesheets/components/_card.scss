@@ -1,0 +1,51 @@
+.vroom-card {
+  background: $gray;
+}
+
+.vroom-border-green {
+  border: solid 4px $primary;
+}
+
+.vroom-border-red {
+  border: solid 4px $red;
+}
+
+.vroom-card-img {
+  border-radius: 20px;
+  padding: 4px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vroom-card-body {
+  padding: 4px;
+  p {
+    margin: 0px;
+  }
+  h4 {
+    margin-bottom: 4px;
+  }
+}
+
+.vroom-medal {
+  border: solid $primary 4px;
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+}
+
+.vroom-team-logo {
+    font-size: 35px;
+    padding: 8px;
+    background-color: white;
+    color: $gray;
+}
+
+.vroom-team-info {
+  padding: 8px;
+  background-color: white;
+  color: $gray;
+  i {
+    font-size: 20px;
+  }
+}
