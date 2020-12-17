@@ -1,18 +1,16 @@
 .vroom-modal {
   background-color: $primary;
-  width: 100vw;
-  margin: -8px;
   border-radius: 24px 24px 0px 0px;
+  padding: 8px;
 
-  position:fixed;
-  top:auto;
-  right:auto;
-  left:auto;
-  bottom:0;
+  position: fixed;
+  top: auto;
+  right: 0;
+  left: 0;
+  bottom: 0;
 
   .vroom-modal-body {
     background-color: $gray;
-    margin: 8px;
     border-radius: 24px;
   }
 }
