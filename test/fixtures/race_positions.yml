@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quali_position: 1
+  race_position: 1
+  race_time: 2020-12-17 23:09:33
+  best_lap: false
+  driver: one
+  race: one
+
+two:
+  quali_position: 1
+  race_position: 1
+  race_time: 2020-12-17 23:09:33
+  best_lap: false
+  driver: two
+  race: two

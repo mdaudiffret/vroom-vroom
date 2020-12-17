@@ -33,8 +33,9 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 
-# authetication gem
+# authetication & authorisation gem
 gem 'devise'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
