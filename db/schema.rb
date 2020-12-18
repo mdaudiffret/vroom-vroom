@@ -10,10 +10,95 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_172755) do
+ActiveRecord::Schema.define(version: 2020_12_17_231939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cars", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "championships", force: :cascade do |t|
+    t.string "name"
+    t.string "sharing_code"
+    t.integer "participants_number"
+    t.integer "race_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "circuits", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "drivers", force: :cascade do |t|
+    t.string "name"
+    t.boolean "available"
+    t.integer "price"
+    t.bigint "car_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["car_id"], name: "index_drivers_on_car_id"
+  end
+
+  create_table "lineups", force: :cascade do |t|
+    t.integer "budget"
+    t.integer "points"
+    t.bigint "driver_id", null: false
+    t.bigint "car_id", null: false
+    t.bigint "team_id", null: false
+    t.bigint "race_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["car_id"], name: "index_lineups_on_car_id"
+    t.index ["driver_id"], name: "index_lineups_on_driver_id"
+    t.index ["race_id"], name: "index_lineups_on_race_id"
+    t.index ["team_id"], name: "index_lineups_on_team_id"
+  end
+
+  create_table "race_positions", force: :cascade do |t|
+    t.integer "quali_position"
+    t.integer "race_position"
+    t.time "race_time"
+    t.boolean "best_lap"
+    t.bigint "driver_id", null: false
+    t.bigint "race_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driver_id"], name: "index_race_positions_on_driver_id"
+    t.index ["race_id"], name: "index_race_positions_on_race_id"
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.date "date"
+    t.integer "lap_number"
+    t.bigint "circuit_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["circuit_id"], name: "index_races_on_circuit_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.integer "budget"
+    t.integer "points"
+    t.bigint "user_id", null: false
+    t.bigint "championship_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "logo"
+    t.string "sharing_code"
+    t.index ["championship_id"], name: "index_teams_on_championship_id"
+    t.index ["user_id"], name: "index_teams_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +112,14 @@ ActiveRecord::Schema.define(version: 2020_12_14_172755) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "drivers", "cars"
+  add_foreign_key "lineups", "cars"
+  add_foreign_key "lineups", "drivers"
+  add_foreign_key "lineups", "races"
+  add_foreign_key "lineups", "teams"
+  add_foreign_key "race_positions", "drivers"
+  add_foreign_key "race_positions", "races"
+  add_foreign_key "races", "circuits"
+  add_foreign_key "teams", "championships"
+  add_foreign_key "teams", "users"
 end

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  budget: 1
+  points: MyString
+  integer: MyString
+  driver: one
+  car: one
+  team: one
+  race: one
+
+two:
+  budget: 1
+  points: MyString
+  integer: MyString
+  driver: two
+  car: two
+  team: two
+  race: two
