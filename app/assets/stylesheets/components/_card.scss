@@ -35,10 +35,11 @@
 }
 
 .vroom-team-logo {
-    font-size: 35px;
-    padding: 8px;
-    background-color: white;
-    color: $gray;
+  border: solid $red 8px;
+  font-size: 35px;
+  padding: 5px;
+  background-color: $gray;
+  color: $red;
 }
 
 .vroom-team-info {
