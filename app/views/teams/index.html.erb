@@ -20,19 +20,14 @@
 
 <div class="container mt-2 text-center">
   <!-- Button trigger modal -->
-  <div class="d-flex mb-3">
-    <button type="button" class=" mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#nouvelle">
-      Nouvelle compet'
+    <button type="button" class="mb-3 mr-1 mt-3 vroom-btn-lg vroom-red btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#nouvelle">
+      Nouvelle écurie
     </button>
-    <button type="button" class="ml-1 mt-3 vroom-btn-lg vroom-red btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#rejoindre">
-      Rejoindre
-    </button>
-  </div>
 
-  <% @teams.each do |team| %>
+  <% @teams.reverse.each do |team| %>
     <div class="vroom-card vroom-border-red card mb-3">
       <div class="vroom-card-body card-body d-flex flex-column justify-content-center my-1">
-        <div class="vroom-medal vroom-team-logo m-auto"><i class="fas fa-horse"></i></div>
+        <div class="<%= team.color %> vroom-medal vroom-team-logo m-auto"><i class='<%= @logos[team.logo.to_sym] %>'></i></div>
         <h3 class="card-title"><%= team.name %></h3>
         <h6 class="card-subtitle mb-2 text-muted"><%= team.logo %> <%= team.color %></h6>
         <div class="my-1 d-flex justify-content-around">
@@ -43,10 +38,10 @@
         <div class="mb-1 d-flex justify-content-around">
           <button type="button" class="mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">
             <div class="vroom-inmod btn btn-lg btn-block">
-              <span class="green-text">lg btn</span>
+              <span class="green-text">créer compet'</span>
             </div>
           </button>
-          <button type="button" class=" mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">lg btn</button>
+          <button type="button" class=" mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">rejoindre</button>
         </div>
       </div>
     </div>
@@ -58,53 +53,12 @@
     <div class="modal-dialog">
       <div class="vroom-modal modal-content animate-bottom pb-2">
         <div class="mt-1 d-flex justify-content-center">
-          <h4 class="modal-title text-center" id="exampleModalLabel">Nouvelle compet'</h4>
-        </div>
-        <div class="mb-2 vroom-modal-body modal-body">
-          <p>Okay, pour commencer créer ton écurie:</p>
-          <%= simple_form_for @team do |f| %>
-            <%= f.input :name %>
-            <%= f.input :logo %>
-            <%= f.input :color %>
-            <div class="mb-1 d-flex justify-content-around">
-              <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" data-dismiss="modal">
-                <div class="vroom-inmod btn btn-lg btn-block">
-                  <span class="green-text">en fait non</span>
-                </div>
-              </button>
-              <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <!-- Modale Rejoindre -->
-  <div class="modal" id="rejoindre" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="vroom-modal modal-content animate-bottom pb-2">
-        <div class="mt-1 d-flex justify-content-center">
           <h4 class="modal-title text-center" id="exampleModalLabel">Nouvelle écurie</h4>
         </div>
         <div class="mb-2 vroom-modal-body modal-body">
-          <%= simple_form_for @team do |f| %>
-            <%= f.input :sharing_code %>
-            <p>Okay, mais il te faut une écurie:</p>
-            <%= f.input :name %>
-            <%= f.input :logo %>
-            <%= f.input :color %>
-            <div class="mb-1 d-flex justify-content-around">
-              <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" data-dismiss="modal">
-                <div class="vroom-inmod btn btn-lg btn-block">
-                  <span class="green-text">en fait non</span>
-                </div>
-              </button>
-              <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
-            </div>
-          <% end %>
+          <p>Okay, pour commencer créer ton écurie:</p>
+          <%= render "shared/newteam" %>
         </div>
       </div>
     </div>
   </div>
-</div>

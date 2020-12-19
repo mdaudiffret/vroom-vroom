@@ -34,13 +34,6 @@
   width: 75px;
 }
 
-.vroom-team-logo {
-  border: solid $red 8px;
-  font-size: 35px;
-  padding: 5px;
-  background-color: $gray;
-  color: $red;
-}
 
 .vroom-team-info {
   padding: 8px;
@@ -49,4 +42,92 @@
   i {
     font-size: 20px;
   }
+}
+
+.vroom-team-logo {
+  font-size: 35px;
+  padding: 5px;
+  border-style: solid;
+  border-width: 8px;
+  background-color: $gray;
+}
+
+.rouge, #team_color_rouge + label {
+  color: #EE0000;
+  border-color: #EE0000;
+}
+
+#team_color_rouge:checked + label {
+    background-color: #EE0000;
+    color: $white;
+}
+
+.bleu, #team_color_bleu + label {
+  color: #4591f9;
+  border-color: #4591f9;
+}
+
+#team_color_bleu:checked + label {
+    background-color: #4591f9;
+    color: $white;
+}
+
+.blanc, #team_color_blanc + label {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+#team_color_blanc:checked + label {
+    background-color: #FFFFFF;
+    color: $gray;
+}
+
+.vert, #team_color_vert + label {
+  color: #00D7BC;
+  border-color: #00D7BC;
+}
+
+#team_color_vert:checked + label {
+    background-color: #00D7BC;
+    color: $white;
+}
+
+.orange, #team_color_orange + label {
+  color: #FF8B00;
+  border-color: #FF8B00;
+}
+
+#team_color_orange:checked + label {
+    background-color: #FF8B00;
+    color: $white;
+}
+
+.jaune, #team_color_jaune + label {
+  color: #FFCF00;
+  border-color: #FFCF00;
+}
+
+#team_color_jaune:checked + label {
+    background-color: #FFCF00;
+    color: $gray;
+}
+
+.noir, #team_color_noir + label {
+  color: lightgray;
+  border-color: #000000;
+}
+
+#team_color_noir:checked + label {
+    background-color: #000000;
+    color: $white;
+}
+
+.violet, #team_color_violet + label {
+  color: #b845f9;
+  border-color: #b845f9;
+}
+
+#team_color_violet:checked + label {
+    background-color: #b845f9;
+    color: $white;
 }
