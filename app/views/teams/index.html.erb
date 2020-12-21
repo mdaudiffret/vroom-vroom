@@ -1,37 +1,47 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1501940740999-480321d51e5a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);">
   <div class="container">
+    <div class="d-flex justify-content-end">
+      <div class="vroom-menu-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </div>
+        <div class="vroom-menu dropdown-menu dropdown-menu-right">
+          <%= link_to edit_user_registration_path, class: "vroom-dropdown-item dropdown-item" do %>
+            <p class="my-2"><i class="fas fa-pen"></i> editer profile</p>
+          <% end %>
+          <div class="dropdown-divider m-0"></div>
+          <%= link_to destroy_user_session_path, method: :delete, class: "vroom-dropdown-item dropdown-item" do %>
+            <p  class="my-2"><i class="fas fa-sign-out-alt"></i> déconnexion</p>
+          <% end %>
+        </div>
+    </div>
     <h1 class="text-center">Mes écuries</h1>
   </div>
 </div>
 
 <div class="container mt-2 text-center">
   <!-- Button trigger modal -->
-  <div class="d-flex mb-3">
-    <button type="button" class=" mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#nouvelle">
-      Nouvelle compet'
+    <button type="button" class="mb-3 mr-1 mt-3 vroom-btn-lg vroom-red btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#nouvelle">
+      Nouvelle écurie
     </button>
-    <button type="button" class="ml-1 mt-3 vroom-btn-lg vroom-red btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#rejoindre">
-      Rejoindre
-    </button>
-  </div>
 
-  <% @teams.each do |team| %>
+  <% @teams.reverse.each do |team| %>
     <div class="vroom-card vroom-border-red card mb-3">
-      <div class="vroom-card-body card-body text-center">
+      <div class="vroom-card-body card-body d-flex flex-column justify-content-center my-1">
+        <div class="<%= team.color %> vroom-medal vroom-team-logo m-auto"><i class='<%= @logos[team.logo.to_sym] %>'></i></div>
         <h3 class="card-title"><%= team.name %></h3>
         <h6 class="card-subtitle mb-2 text-muted"><%= team.logo %> <%= team.color %></h6>
         <div class="my-1 d-flex justify-content-around">
-          <div class="vroom-medal vroom-team-logo"><i class="fas fa-horse"></i></div>
           <div class="vroom-medal vroom-team-info d-flex flex-column justify-content-center"><i class="fas fa-trophy"></i>P4</div>
           <div class="vroom-medal vroom-team-info d-flex flex-column justify-content-center"><i class="fas fa-chart-line"></i><%= team.points %>pts</div>
+          <div class="vroom-medal vroom-team-info d-flex flex-column justify-content-center"><i class="fas fa-money-bill"></i><%= team.budget / 1000 %>m</div>
         </div>
         <div class="mb-1 d-flex justify-content-around">
           <button type="button" class="mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">
             <div class="vroom-inmod btn btn-lg btn-block">
-              <span class="green-text">lg btn</span>
+              <span class="green-text">créer compet'</span>
             </div>
           </button>
-          <button type="button" class=" mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">lg btn</button>
+          <button type="button" class=" mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">rejoindre</button>
         </div>
       </div>
     </div>
@@ -43,53 +53,12 @@
     <div class="modal-dialog">
       <div class="vroom-modal modal-content animate-bottom pb-2">
         <div class="mt-1 d-flex justify-content-center">
-          <h4 class="modal-title text-center" id="exampleModalLabel">Nouvelle compet'</h4>
-        </div>
-        <div class="mb-2 vroom-modal-body modal-body">
-          <p>Okay, pour commencer créer ton écurie:</p>
-          <%= simple_form_for @team do |f| %>
-            <%= f.input :name %>
-            <%= f.input :logo %>
-            <%= f.input :color %>
-            <div class="mb-1 d-flex justify-content-around">
-              <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" data-dismiss="modal">
-                <div class="vroom-inmod btn btn-lg btn-block">
-                  <span class="green-text">en fait non</span>
-                </div>
-              </button>
-              <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <!-- Modale Rejoindre -->
-  <div class="modal" id="rejoindre" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="vroom-modal modal-content animate-bottom pb-2">
-        <div class="mt-1 d-flex justify-content-center">
           <h4 class="modal-title text-center" id="exampleModalLabel">Nouvelle écurie</h4>
         </div>
         <div class="mb-2 vroom-modal-body modal-body">
-          <%= simple_form_for @team do |f| %>
-            <%= f.input :sharing_code %>
-            <p>Okay, mais il te faut une écurie:</p>
-            <%= f.input :name %>
-            <%= f.input :logo %>
-            <%= f.input :color %>
-            <div class="mb-1 d-flex justify-content-around">
-              <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" data-dismiss="modal">
-                <div class="vroom-inmod btn btn-lg btn-block">
-                  <span class="green-text">en fait non</span>
-                </div>
-              </button>
-              <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
-            </div>
-          <% end %>
+          <p>Okay, pour commencer créer ton écurie:</p>
+          <%= render "shared/newteam" %>
         </div>
       </div>
     </div>
   </div>
-</div>

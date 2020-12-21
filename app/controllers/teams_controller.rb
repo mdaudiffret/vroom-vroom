@@ -2,6 +2,8 @@ class TeamsController < ApplicationController
   def index
     @teams = policy_scope(Team)
     @team = Team.new()
+    @logos = logos
+    # raise
   end
 
   def create
@@ -32,4 +34,21 @@ class TeamsController < ApplicationController
       :color
     )
   end
+
+  def logos
+    {
+      cheval: 'fas fa-horse',
+      chapeau: 'fas fa-hat-cowboy',
+      reine: 'fas fa-chess-queen',
+      eclair: 'fas fa-bolt',
+      chevrons: 'fas fa-angle-double-down',
+      pomme: 'fas fa-apple-alt',
+      dragon: 'fas fa-dragon',
+      colombe: 'fas fa-dove',
+      hyppo: 'fas fa-hippo',
+      kiwi: 'fas fa-kiwi-bird'
+
+    }
+  end
+
 end
