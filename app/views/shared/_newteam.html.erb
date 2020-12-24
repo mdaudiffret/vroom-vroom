@@ -14,12 +14,12 @@
                         input_html: { class: "tag-selector" },
                         item_wrapper_class: 'tag-item',
                         collection: Team::COLOR %>
-            <div class="mb-1 d-flex justify-content-around">
-              <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" data-dismiss="modal">
-                <div class="vroom-inmod btn btn-lg btn-block">
-                  <span class="green-text">en fait non</span>
-                </div>
-              </button>
-              <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
-            </div>
-          <% end %>
+  <div class="mb-1 d-flex justify-content-around">
+      <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" data-dismiss="modal">
+        <div class="vroom-inmod btn btn-lg btn-block">
+          <span class="green-text">en fait non</span>
+        </div>
+      </button>
+    <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
+  </div>
+<% end %>

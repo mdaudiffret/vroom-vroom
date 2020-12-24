@@ -8,13 +8,9 @@ class TeamsController < ApplicationController
 
   def create
     @team = current_user.teams.new(team_params)
-    if @team.sharing_code
-      @team.championship = Championship.find(sharing_code: @team.sharing_code)
-    else
-      @team.championship = Championship.new()
-    end
     @team.budget = 200_000
     @team.points = 0
+    @team.championship = Championship.first
     authorize @team
     if @team.save!
       flash[:notice] = "Ecurie crée"

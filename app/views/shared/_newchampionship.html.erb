@@ -1,0 +1,27 @@
+<%= simple_form_for [@team, @championship] do |f| %>
+            <%= f.input :name,
+                        label: "Nom du championat",
+                        placeholder: "Donnez un nom au championat" %>
+            <%= f.input :participants_number,
+                        as: :radio_buttons,
+                        input_html: { class: "tag-selector" },
+                        item_wrapper_class: 'tag-item',
+                        collection: (2..10),
+                        label: "Nombre max de participants" %>
+            <%= f.input :race_number,
+                        as: :radio_buttons,
+                        input_html: { class: "tag-selector" },
+                        item_wrapper_class: 'tag-item',
+                        collection: [3, 5, 10, 20, 23],
+                        label: "Nombre de grand-prix" %>
+  <div>
+    <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
+    <%= link_to teams_path do %>
+      <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">
+        <div class="vroom-inmod btn btn-lg btn-block">
+          <span class="green-text">en fait non</span>
+        </div>
+      </button>
+    <% end %>
+  </div>
+<% end %>
