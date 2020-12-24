@@ -21,12 +21,32 @@ class TeamsController < ApplicationController
     end
   end
 
+  def join_championship
+    @team = Team.find(params[:id])
+    authorize @team
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    authorize @team
+    @team.sharing_code = team_params[:sharing_code]
+    @team.championship = Championship.find_by(sharing_code: @team.sharing_code)
+    if @team.save!
+      flash[:notice] = "Ecurie mise à jour"
+      redirect_to teams_path
+    else
+      flash[:notice] = "Il y a eu un problème"
+      redirect_to teams_path
+    end
+  end
+
   private
 
   def team_params
     params.require(:team).permit(
       :name,
       :logo,
+      :sharing_code,
       :color
     )
   end

@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get 'ui_kit', to: 'pages#ui_kit'
 
-  resources :teams, only: [ :index, :create ] do
+  resources :teams, only: [ :index, :create, :update ] do
     resources :championships, only: [ :new, :create ]
+    member do
+      get :join_championship
+    end
   end
 end

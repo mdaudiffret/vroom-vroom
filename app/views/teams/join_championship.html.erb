@@ -1,0 +1,17 @@
+<div class="container">
+  <%= simple_form_for @team do |f| %>
+            <%= f.input :sharing_code,
+                        label: "Code de partage du championat",
+                        placeholder: "Entrez le code ici" %>
+  <div>
+    <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
+    <%= link_to teams_path do %>
+      <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">
+        <div class="vroom-inmod btn btn-lg btn-block">
+          <span class="green-text">en fait non</span>
+        </div>
+      </button>
+    <% end %>
+  </div>
+<% end %>
+</div>

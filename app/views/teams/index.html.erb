@@ -45,7 +45,7 @@
                 </div>
               </button>
             <% end %>
-            <button type="button" class="mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">rejoindre uchampionat</button>
+            <%= link_to "rejoindre un championat", join_championship_team_path(team), type: "button", class: "mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
           </div>
         <% else %>
         <p>- - -</p>

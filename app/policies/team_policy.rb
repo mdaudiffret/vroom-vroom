@@ -9,6 +9,10 @@ class TeamPolicy < ApplicationPolicy
     true
   end
 
+  def join_championship?
+    record.user == user
+  end
+
   def show?
     record.user == user
   end
