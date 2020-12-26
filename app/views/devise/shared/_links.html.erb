@@ -1,14 +1,35 @@
-<div class="d-flex justify-content-center">
+<div>
+  <hr style="background-color: white" class="mb-3">
+  <h3>Autres options</h3>
+
   <%- if controller_name != 'sessions' %>
-    <%= link_to "Log in", new_session_path(resource_name), class: "mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg" %><br />
+    <%= link_to new_session_path(resource_name) do %><br />
+      <button type="button" class="vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">
+        <div class="vroom-inmod btn btn-lg btn-block">
+          <span class="green-text">J'ai déjà un compte en fait</span>
+        </div>
+      </button>
+    <% end %>
   <% end %>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to "Sign up", new_registration_path(resource_name), class: "mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg" %><br />
+    <%= link_to new_registration_path(resource_name) do %><br />
+      <button type="button" class="vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">
+        <div class="vroom-inmod btn btn-lg btn-block">
+           <span class="green-text">Créer un compte</span>
+        </div>
+      </button>
+    <% end %>
   <% end %>
 
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    <%= link_to "Forgot your password?", new_password_path(resource_name), class: "mx-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg" %><br />
+    <%= link_to new_password_path(resource_name) do %><br />
+      <button type="button" class="vroom-btn-lg vroom-red btn btn-primary btn-lg btn-block">
+        <div class="vroom-inmod btn btn-lg btn-block">
+          <span class="red-text">J'ai oublié mon mot de passe</span>
+        </div>
+      </button>
+    <% end %>
   <% end %>
 
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
