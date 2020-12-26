@@ -8,16 +8,31 @@ class TeamsController < ApplicationController
 
   def create
     @team = current_user.teams.new(team_params)
-    if @team.sharing_code
-      @team.championship = Championship.find(sharing_code: @team.sharing_code)
-    else
-      @team.championship = Championship.new()
-    end
     @team.budget = 200_000
     @team.points = 0
+    @team.championship = Championship.first
     authorize @team
     if @team.save!
       flash[:notice] = "Ecurie crée"
+      redirect_to teams_path
+    else
+      flash[:notice] = "Il y a eu un problème"
+      redirect_to teams_path
+    end
+  end
+
+  def join_championship
+    @team = Team.find(params[:id])
+    authorize @team
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    authorize @team
+    @team.sharing_code = team_params[:sharing_code]
+    @team.championship = Championship.find_by(sharing_code: @team.sharing_code)
+    if @team.save!
+      flash[:notice] = "Ecurie mise à jour"
       redirect_to teams_path
     else
       flash[:notice] = "Il y a eu un problème"
@@ -31,6 +46,7 @@ class TeamsController < ApplicationController
     params.require(:team).permit(
       :name,
       :logo,
+      :sharing_code,
       :color
     )
   end
