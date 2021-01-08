@@ -1,0 +1,9 @@
+<% if @races.length > 0 %>
+  <% @races.each do |race| %>
+    <%= race.circuit_id.name %>
+  <% end %>
+<% else %>
+  <h3>No races entered yet !</h3>
+<% end %>
+
+<%= link_to "add a race", new_race_path %>
