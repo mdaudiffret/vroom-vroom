@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="mt-3">Éditer les infos</h1>
+  <%= simple_form_for @circuit do |f| %>
+    <%= f.input :name,
+                label: "Nom du circuit" %>
+    <%= f.input :city,
+                label: "Ville" %>
+    <%= f.submit "c'est parti", class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
+  <% end %>
+  <%= link_to circuits_path do %>
+    <button type="button" class="mr-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block">
+      <div class="vroom-inmod btn btn-lg btn-block">
+        <span class="green-text">en fait non</span>
+      </div>
+    </button>
+  <% end %>
+</div>
