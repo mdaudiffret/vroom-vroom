@@ -1,0 +1,41 @@
+<div class="container">
+  <h1 class="mt-3">Les circuits</h1>
+  <% if @circuits.length > 0 %>
+    <% @circuits.each do |circuit| %>
+      <div class="vroom-card vroom-border-green card mb-3 p-2">
+        <div class="row no-gutters">
+            <div class="vroom-card-body card-body h-100 d-flex flex-column justify-content-between">
+              <p class="card-text font-weight-bold"><%= circuit.name %></p>
+              <p class="card-text font-weight-light">Ville : <%= circuit.city %></p>
+            </div>
+        </div>
+        <div class="d-flex mb-1 justify-content-around mt-2">
+        <%= link_to edit_circuit_path(circuit) do %>
+          <button type="button" class=" vroom-btn-lg vroom-green btn btn-primary btn-lg">
+            <div class="vroom-inmod-sm btn btn-lg btn-block">
+              <span class="mx-2 green-text">éditer les infos</span>
+            </div>
+          </button>
+        <% end %>
+        <%= link_to circuit_path(circuit), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <button type="button" class="vroom-btn-lg vroom-green btn btn-primary btn-lg">
+            <div class="vroom-inmod-sm btn btn-lg btn-block">
+              <span class="mx-2 green-text">supprimer</span>
+            </div>
+          </button>
+        <% end %>
+        </div>
+      </div>
+    <% end %>
+    <% else %>
+      <h3>Aucun circuit pour le moment !</h3>
+    <% end %>
+  <%= link_to "ajouter un circuit", new_circuit_path, class: "ml-1 mt-3 vroom-btn-lg vroom-green btn btn-primary btn-lg btn-block" %>
+  <%= link_to root_path do %>
+    <button type="button" class="mt-3 vroom-btn-lg vroom-red btn btn-primary btn-lg btn-block">
+      <div class="vroom-inmod btn btn-lg btn-block">
+        <span class="red-text">retouner à la home</span>
+      </div>
+    </button>
+  <% end %>
+</div>
